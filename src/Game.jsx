@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-
+import { OptionButton} from './OptionButton';
 const options = [
   {id: 0, name: "Piedra", emoji: "🗿", beats: [2, 3]},
   {id: 1, name: "Papel", emoji: "🧻", beats: [0, 4]},
@@ -68,15 +68,12 @@ export default function Game() {
       <h1 className='text-3x1 mb-4 text-center font-bold'>¿Te atreves a jugar?</h1>
       <div className='max-w-md mx-auto'>
         {options.map(option => (
-          <button 
-            className='px-4 py-2 m-2 text-xl font-bold text-white bg-purple-500 rounded-full hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-gray-400 disabled:opacity-50 disabled:cursor-not-allowed'
+          <OptionButton 
             key={option.id}
+            option={option}
+            handlePlay={handlePlay}
             disabled={disabled}
-            onClick={() => handlePlay(option.id)}
-            title={option.name}
-          >
-            {option.emoji}
-          </button>
+          />
         ))}
         {userEleccion != null && (
           <p className='text-xl mt-4'>{UserMessage}</p>
